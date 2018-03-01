@@ -73,24 +73,25 @@ namespace Gra_w_zycie
             void liczenie_sasiedztwa(int[,] tab)
             {
                 int licznik_sasiada = 0;
-                for (int i = 1; i < 12; i++)
+                for (int i = 1; i < 11; i++)
                 {
-                    for (int j = 1; j < 12; j++)
+                    for (int j = 1; j < 11; j++)
                     {
                         
-                      /*for (int k=(i-1); k<(i); k++)
+                      for (int k=i-1; k<i+1; k++)
                         {
                             
-                           for (int l=j-1; l<j+2; j++)
+                            for (int l=j-1; l<j+1; l++)
                             {
                                 if (tab[k, l] == 1)
                                 {
                                     licznik_sasiada++;
+
                                 }
                           
                             }
                     
-                        }*/
+                        }
                         if (tab[i, j] == 1)
                         {
                             licznik_sasiada--;
@@ -101,13 +102,70 @@ namespace Gra_w_zycie
 
                 }
             }
-
+            void warunki(int[,] tab, int[,] tab2)
+            {
+                for (int i = 1; i < 11; i++)
+                {
+                    for (int j = 1; j < 11; j++)
+                    {
+                        if (tab2[i, j] == 0)
+                        {
+                            if (tab[i, j] == 3)
+                            {
+                                tab2[i, j] = 1;
+                            }
+                        }
+                        if (tab2[i, j] == 1)
+                        {
+                            if (tab[i, j] == 2 || tab[i, j] == 3)
+                            {
+                                tab2[i, j] = 1;
+                            }
+                            if (tab[i, j] < 2)
+                            {
+                                tab2[i, j] = 0;
+                            }
+                            
+                            if (tab[i, j] > 3)
+                            {
+                                tab2[i, j] = 0;
+                            }
+                        }
+                        
+                    }
+                }
+             }
+            void zakonczenie(int[,] tab)
+            {
+                int licznik=0;
+                for (int i = 0; i < 12; i++)
+                {
+                    for (int j = 0; j < 12; j++)
+                    {
+                        if(tab[i,j]==1)
+                        {
+                            licznik++;
+                        }
+                    }
+                }
+                if (licznik == 0)
+                {
+                    Task.Delay(1000);
+                    System.Diagnostics.Process.GetCurrentProcess().Kill();
+                
+                }
+            }
             losuj(pole);
             wyswietl(pole);
-            liczenie_sasiedztwa(pole);
-            wyswietls(sasiedztwa);
             
-            Console.ReadKey();
+            while (true) {
+                liczenie_sasiedztwa(pole);
+                wyswietls(sasiedztwa);
+                warunki(sasiedztwa, pole);
+                wyswietl(pole);
+                Console.ReadKey();
+                zakonczenie(pole);
+            }
         }
     }
 }
