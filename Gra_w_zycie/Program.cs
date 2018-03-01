@@ -73,15 +73,15 @@ namespace Gra_w_zycie
             void liczenie_sasiedztwa(int[,] tab)
             {
                 int licznik_sasiada = 0;
-                for (int i = 1; i < 11; i++)
+                for (int i = 1; i < 12; i++)
                 {
-                    for (int j = 1; j < 11; j++)
+                    for (int j = 1; j < 12; j++)
                     {
                         
-                      for (int k=i-1; k<i+2; k++)
+                      /*for (int k=(i-1); k<(i); k++)
                         {
                             
-                            for (int l=j-1; l<j+2; j++)
+                           for (int l=j-1; l<j+2; j++)
                             {
                                 if (tab[k, l] == 1)
                                 {
@@ -90,7 +90,7 @@ namespace Gra_w_zycie
                           
                             }
                     
-                        }
+                        }*/
                         if (tab[i, j] == 1)
                         {
                             licznik_sasiada--;
