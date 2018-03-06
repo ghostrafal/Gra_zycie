@@ -201,6 +201,9 @@ namespace Gra_w_zycie
             Console.Clear();
             Console.WriteLine("Wylosowana populacja wyglada nastepujaco: ");
             Gra_w_zycie gra = new Gra_w_zycie(rozmiar);
+            Console.Write("ROZMIAR POPULACJA: ");
+            Console.Write(gra.rozmiar_populacji());
+            Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Wciśnij dowolny przycisk, aby rozpoczac pierwsza ture...");
             Console.ReadKey();
